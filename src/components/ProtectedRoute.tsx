@@ -1,14 +1,20 @@
 // src/components/ProtectedRoute.tsx
-"use client";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { ReactNode } from "react";
 
-export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
-  useEffect(() => {
-    const t = localStorage.getItem("gc_token");
-    if (!t) router.push("/login");
-  }, [router]);
+interface Props {
+  children: ReactNode;
+}
+
+export default function ProtectedRoute({ children }: Props) {
+  // cookies() retorna ReadonlyRequestCookies, que tem .get(name)
+  const cookieStore = cookies(); 
+  const token = cookieStore.get("gc_token")?.value; // <- apenas .value, sem '()'
+
+  if (!token) {
+    redirect("/login"); // Redireciona se não estiver logado
+  }
 
   return <>{children}</>;
 }
