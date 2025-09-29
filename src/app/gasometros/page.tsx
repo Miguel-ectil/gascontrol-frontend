@@ -81,34 +81,26 @@ export default function GasometrosPage() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {(data || []).map(g => (
-                <TableRow key={g.id} hover>
-                  <TableCell>{g.id}</TableCell>
-                  <TableCell>
-                    <Link href={`/gasometros/${g.id}`}>{g.identificador}</Link>
-                  </TableCell>
-                  <TableCell>{g.descricao}</TableCell>
-                  <TableCell>{g.localizacao}</TableCell>
-                  <TableCell>
-                    <Chip
-                      size="small"
-                      label={g.status || '-'}
-                      color={g.status === 'ativo' ? 'success' : 'default'}
-                    />
-                  </TableCell>
-                  <TableCell align="right" className="table-actions">
-                    <Link href={`/gasometros/${g.id}/editar`} passHref>
-                      <IconButton size="small" component="a">
-                        <EditIcon fontSize="small" />
+              {(data || []).map(g => {
+                const editHref = `/gasometros/${g.id}/editar`
+                return (
+                  <TableRow key={g.id} hover>
+                    {/* ... outras células */}
+                    <TableCell align="right" className="table-actions">
+                      <Link href={editHref} passHref>
+                        <IconButton size="small" component="a">
+                          <EditIcon fontSize="small" />
+                        </IconButton>
+                      </Link>
+                      <IconButton size="small" onClick={() => del.mutate(g.id)}>
+                        <DeleteIcon fontSize="small" />
                       </IconButton>
-                    </Link>
-                    <IconButton size="small" onClick={() => del.mutate(g.id)}>
-                      <DeleteIcon fontSize="small" />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
+                    </TableCell>
+                  </TableRow>
+                )
+              })}
             </TableBody>
+
           </Table>
         </CardContent>
       </Card>
