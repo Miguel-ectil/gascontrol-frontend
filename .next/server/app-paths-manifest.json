@@ -1,0 +1,12 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/alertas/page": "app/alertas/page.js",
+  "/gasometros/[id]/page": "app/gasometros/[id]/page.js",
+  "/gasometros/novo/page": "app/gasometros/novo/page.js",
+  "/gasometros/page": "app/gasometros/page.js",
+  "/leituras/page": "app/leituras/page.js",
+  "/login/page": "app/login/page.js",
+  "/logout/page": "app/logout/page.js",
+  "/page": "app/page.js"
+}

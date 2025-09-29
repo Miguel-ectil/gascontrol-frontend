@@ -3,13 +3,13 @@ import type { Metadata } from 'next'
 import React from 'react'
 import { CssBaseline, ThemeProvider, createTheme } from '@mui/material'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
+import { AppRouterCacheProvider } from '@/lib/AppRouterCacheProvider' // ✅ correto
 import './globals.css'
 
-export const metadata: Metadata = {
-  title: 'GasControl',
-  description: 'Gestão de gasômetros e leituras'
-}
+// export const metadata: Metadata = {
+//   title: 'GasControl',
+//   description: 'Gestão de gasômetros e leituras'
+// }
 
 const theme = createTheme({ palette: { mode: 'light' } })
 const queryClient = new QueryClient()
